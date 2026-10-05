@@ -210,12 +210,24 @@ document.querySelectorAll('.tab').forEach(tab => {
 const phraseList = $('phrase-list');
 const phraseSearch = $('phrase-search');
 
-function playPhrase(id, lang, text) {
-    ttsAudio.src = `audio/${id}-${lang}.mp3`;
-    ttsAudio.onended = null;
-    ttsAudio.onerror = () => speak(text, lang); // audio file missing - try live voice
+// Play from a blob: Chrome rejects service-worker-cached mp3 served to the media element's
+// range requests when offline, but a plain fetch from the cache works.
+let phraseBlobUrl = null;
+async function playPhrase(id, lang, text) {
     window.speechSynthesis && window.speechSynthesis.cancel();
-    ttsAudio.play().catch(() => {});
+    try {
+        const res = await fetch(`audio/${id}-${lang}.mp3`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (phraseBlobUrl) URL.revokeObjectURL(phraseBlobUrl);
+        phraseBlobUrl = URL.createObjectURL(await res.blob());
+        ttsAudio.src = phraseBlobUrl;
+        ttsAudio.onended = null;
+        ttsAudio.onerror = null;
+        await ttsAudio.play();
+    } catch (e) {
+        console.error('Phrase audio error:', e);
+        speak(text, lang); // audio file missing - try live voice
+    }
 }
 
 function renderPhrases(groups) {

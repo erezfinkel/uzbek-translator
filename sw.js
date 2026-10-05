@@ -1,5 +1,5 @@
 // Offline support: app shell + phrasebook audio are cached on first visit.
-const CACHE = 'uz-translator-v1';
+const CACHE = 'uz-translator-v2';
 const SHELL = ['./', 'index.html', 'style.css', 'script.js', 'phrases.json'];
 
 self.addEventListener('install', (event) => {
