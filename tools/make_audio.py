@@ -1,4 +1,4 @@
-"""Generate offline phrasebook audio (Uzbek + Russian neural voices) from phrases.json.
+"""Generate offline phrasebook audio (Azerbaijani + Russian neural voices) from phrases.json.
 
 Run from the project root:  python tools/make_audio.py
 Skips files that already exist; delete audio/<id>-<lang>.mp3 to regenerate one.
@@ -10,7 +10,7 @@ from pathlib import Path
 import edge_tts
 
 ROOT = Path(__file__).resolve().parent.parent
-VOICES = {"uz": "uz-UZ-MadinaNeural", "ru": "ru-RU-SvetlanaNeural"}
+VOICES = {"az": "az-AZ-BanuNeural", "ru": "ru-RU-SvetlanaNeural"}
 
 
 async def main():

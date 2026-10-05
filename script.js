@@ -1,7 +1,7 @@
 const $ = (id) => document.getElementById(id);
 
 const hebrewTextEl = $('hebrew-text');
-const uzbekTextEl = $('uzbek-text');
+const azeriTextEl = $('azeri-text');
 const russianTextEl = $('russian-text');
 const outputActions = $('output-actions');
 const statusText = $('status-text');
@@ -12,16 +12,16 @@ const replyHebrewEl = $('reply-hebrew');
 const replyCard = $('reply-card');
 const ttsAudio = $('tts-audio');
 
-let lastUzbek = '';
+let lastAzeri = '';
 let lastRussian = '';
 let lastReplyHebrew = '';
 
 // ========== Text to speech ==========
-// Order per language: device voice -> Google TTS audio. Google has no Uzbek voice,
-// so Uzbek falls back to a Turkish voice reading a phonetic respelling.
+// Order per language: device voice -> Google TTS audio. Google has no Azerbaijani voice,
+// so Azerbaijani falls back to a Turkish voice reading a phonetic respelling.
 
 const LANGS = {
-    uz: { voice: ['uz'], google: null, fallback: 'tr' },
+    az: { voice: ['az'], google: null, fallback: 'tr' },
     tr: { voice: ['tr'], google: 'tr' },
     ru: { voice: ['ru'], google: 'ru' },
     he: { voice: ['he', 'iw'], google: 'iw' },
@@ -43,18 +43,13 @@ function findVoice(prefixes) {
     return voices.find(v => v.lang && prefixes.some(p => v.lang.toLowerCase().replace('_', '-').startsWith(p)));
 }
 
-// Uzbek Latin -> Turkish spelling, so a Turkish voice pronounces it roughly right.
-function uzbekToTurkishSpelling(text) {
-    return text.toLowerCase()
-        .replace(/[ʻʼ‘’`]/g, "'")
-        .replace(/o'/g, 'o')
-        .replace(/g'/g, 'ğ')
-        .replace(/sh/g, 'ş')
-        .replace(/ch/g, 'ç')
-        .replace(/'/g, '')
-        .replace(/x/g, 'h')
-        .replace(/q/g, 'k')
-        .replace(/j/g, 'c');
+// Azerbaijani -> Turkish spelling, so a Turkish voice pronounces it close to right.
+// Only three letters differ; Azerbaijani q is mostly voiced (qız = "gız").
+function azeriToTurkishSpelling(text) {
+    return text
+        .replace(/Ə/g, 'E').replace(/ə/g, 'e')
+        .replace(/X/g, 'H').replace(/x/g, 'h')
+        .replace(/Q/g, 'G').replace(/q/g, 'g');
 }
 
 function setStatus(el, msg) { el.innerText = msg; }
@@ -80,7 +75,7 @@ function speak(text, lang, statusEl = statusText) {
 
     if (!voice) {
         if (cfg.google) return playGoogle(text, cfg.google, statusEl);
-        if (cfg.fallback === 'tr') return speak(uzbekToTurkishSpelling(text), 'tr', statusEl);
+        if (cfg.fallback === 'tr') return speak(azeriToTurkishSpelling(text), 'tr', statusEl);
         return setStatus(statusEl, '❌ אין קול זמין לשפה הזו');
     }
 
@@ -115,18 +110,18 @@ const OFFLINE_MSG = '📴 אין חיבור לאינטרנט. השיחון עו�
 
 async function translateHebrew(text) {
     setStatus(statusText, '⏳ מתרגם...');
-    uzbekTextEl.innerText = '...';
+    azeriTextEl.innerText = '...';
     russianTextEl.innerText = '';
     outputActions.hidden = true;
     try {
-        [lastUzbek, lastRussian] = await Promise.all([translate(text, 'he', 'uz'), translate(text, 'he', 'ru')]);
-        uzbekTextEl.innerText = lastUzbek;
+        [lastAzeri, lastRussian] = await Promise.all([translate(text, 'he', 'az'), translate(text, 'he', 'ru')]);
+        azeriTextEl.innerText = lastAzeri;
         russianTextEl.innerText = lastRussian;
         outputActions.hidden = false;
-        speak(lastUzbek, 'uz');
+        speak(lastAzeri, 'az');
     } catch (e) {
         console.error('Translation error:', e);
-        uzbekTextEl.innerText = navigator.onLine ? '❌ שגיאה בתרגום. נסה שוב.' : OFFLINE_MSG;
+        azeriTextEl.innerText = navigator.onLine ? '❌ שגיאה בתרגום. נסה שוב.' : OFFLINE_MSG;
         setStatus(statusText, 'מוכן');
     }
 }
@@ -187,12 +182,12 @@ $('translate-btn').addEventListener('click', () => {
     else setStatus(statusText, 'אנא הזן טקסט לתרגום.');
 });
 
-$('play-uz-btn').addEventListener('click', () => lastUzbek && speak(lastUzbek, 'uz'));
+$('play-az-btn').addEventListener('click', () => lastAzeri && speak(lastAzeri, 'az'));
 $('play-ru-btn').addEventListener('click', () => lastRussian && speak(lastRussian, 'ru'));
 $('play-reply-btn').addEventListener('click', () => lastReplyHebrew && speak(lastReplyHebrew, 'he', replyStatus));
 
-$('reply-uz-btn').addEventListener('click', (e) =>
-    listen('uz-UZ', e.currentTarget, replyStatus, (text) => translateReply(text, 'uz')));
+$('reply-az-btn').addEventListener('click', (e) =>
+    listen('az-AZ', e.currentTarget, replyStatus, (text) => translateReply(text, 'az')));
 $('reply-ru-btn').addEventListener('click', (e) =>
     listen('ru-RU', e.currentTarget, replyStatus, (text) => translateReply(text, 'ru')));
 
@@ -241,19 +236,19 @@ function renderPhrases(groups) {
         group.items.forEach(item => {
             const card = document.createElement('div');
             card.className = 'phrase';
-            card.dataset.search = `${item.he} ${item.uz} ${item.ru}`.toLowerCase();
+            card.dataset.search = `${item.he} ${item.az} ${item.ru}`.toLowerCase();
             card.innerHTML = `
                 <div class="phrase-he"></div>
-                <div class="phrase-uz" dir="ltr"></div>
+                <div class="phrase-az" dir="ltr"></div>
                 <div class="phrase-ru" dir="ltr"></div>
                 <div class="phrase-actions">
-                    <button class="chip uz-chip">🔊 O'zbekcha</button>
+                    <button class="chip az-chip">🔊 Azərbaycanca</button>
                     <button class="chip ru-chip">🔊 Русский</button>
                 </div>`;
             card.querySelector('.phrase-he').innerText = item.he;
-            card.querySelector('.phrase-uz').innerText = item.uz;
+            card.querySelector('.phrase-az').innerText = item.az;
             card.querySelector('.phrase-ru').innerText = item.ru;
-            card.querySelector('.uz-chip').addEventListener('click', () => playPhrase(item.id, 'uz', item.uz));
+            card.querySelector('.az-chip').addEventListener('click', () => playPhrase(item.id, 'az', item.az));
             card.querySelector('.ru-chip').addEventListener('click', () => playPhrase(item.id, 'ru', item.ru));
             section.appendChild(card);
         });

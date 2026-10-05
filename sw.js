@@ -1,5 +1,5 @@
 // Offline support: app shell + phrasebook audio are cached on first visit.
-const CACHE = 'uz-translator-v2';
+const CACHE = 'az-translator-v3';
 const SHELL = ['./', 'index.html', 'style.css', 'script.js', 'phrases.json'];
 
 self.addEventListener('install', (event) => {
@@ -7,7 +7,7 @@ self.addEventListener('install', (event) => {
         const cache = await caches.open(CACHE);
         await cache.addAll(SHELL);
         const groups = await (await fetch('phrases.json')).json();
-        const audio = groups.flatMap(g => g.items.flatMap(i => [`audio/${i.id}-uz.mp3`, `audio/${i.id}-ru.mp3`]));
+        const audio = groups.flatMap(g => g.items.flatMap(i => [`audio/${i.id}-az.mp3`, `audio/${i.id}-ru.mp3`]));
         await cache.addAll(audio);
         await self.skipWaiting();
     })());
