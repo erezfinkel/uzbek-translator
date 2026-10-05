@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0099B5">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇺🇿</text></svg>">
+    <title>מתרגם אוזבקית</title>
+    <link rel="stylesheet" href="style.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Assalomu alaykum 🇺🇿</h1>
+            <p>המתרגם האישי למשפחה</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab active" data-panel="talk-panel">💬 שיחה</button>
+            <button class="tab" data-panel="phrases-panel">📖 שיחון</button>
+        </nav>
+
+        <main id="talk-panel" class="panel">
+            <div class="card">
+                <h2>עברית 🇮🇱</h2>
+                <textarea id="hebrew-text" class="text-box input-box" placeholder="לחץ על המיקרופון או הקלד טקסט כאן..."></textarea>
+                <button id="translate-btn" class="icon-btn secondary-btn">🔤 תרגם</button>
+            </div>
+
+            <button id="record-btn" class="main-btn" aria-label="דבר בעברית">🎙️</button>
+            <p id="status-text">מוכן להקלטה</p>
+
+            <div class="card">
+                <h2>אוזבקית 🇺🇿</h2>
+                <div id="uzbek-text" class="text-box big-text" dir="ltr">התרגום יופיע כאן...</div>
+                <div id="russian-text" class="text-box small-text" dir="ltr"></div>
+                <div id="output-actions" class="actions" hidden>
+                    <button id="play-uz-btn" class="icon-btn">🔊 O'zbekcha</button>
+                    <button id="play-ru-btn" class="icon-btn ru-btn">🔊 Русский</button>
+                </div>
+            </div>
+
+            <div class="card reply-section">
+                <h2>הצד השני עונה 🗣️</h2>
+                <p class="hint">תן לו את הטלפון, שילחץ וידבר:</p>
+                <div class="actions">
+                    <button id="reply-uz-btn" class="icon-btn reply-btn">🎙️ O'zbekcha gapiring</button>
+                    <button id="reply-ru-btn" class="icon-btn reply-btn">🎙️ Говорите по-русски</button>
+                </div>
+                <p id="reply-status" class="status-small"></p>
+                <div id="reply-card" hidden>
+                    <div id="reply-original" class="text-box small-text" dir="ltr"></div>
+                    <div id="reply-hebrew" class="text-box big-text"></div>
+                    <button id="play-reply-btn" class="icon-btn">🔊 השמע בעברית</button>
+                </div>
+            </div>
+        </main>
+
+        <main id="phrases-panel" class="panel" hidden>
+            <input id="phrase-search" class="input-box" type="search" placeholder="🔍 חיפוש משפט...">
+            <p class="hint">השיחון עובד גם בלי אינטרנט</p>
+            <div id="phrase-list"></div>
+        </main>
+    </div>
+    <audio id="tts-audio" playsinline></audio>
+    <script src="script.js?v=1"></script>
+</body>
+</html>

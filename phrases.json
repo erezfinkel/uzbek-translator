@@ -1,0 +1,57 @@
+[
+  {"cat": "בסיס", "items": [
+    {"id": "b01", "he": "שלום", "uz": "Assalomu alaykum", "ru": "Здравствуйте"},
+    {"id": "b02", "he": "תודה רבה", "uz": "Katta rahmat", "ru": "Большое спасибо"},
+    {"id": "b03", "he": "כן", "uz": "Ha", "ru": "Да"},
+    {"id": "b04", "he": "לא", "uz": "Yo'q", "ru": "Нет"},
+    {"id": "b05", "he": "בבקשה", "uz": "Iltimos", "ru": "Пожалуйста"},
+    {"id": "b06", "he": "סליחה", "uz": "Kechirasiz", "ru": "Извините"},
+    {"id": "b07", "he": "להתראות", "uz": "Xayr", "ru": "До свидания"},
+    {"id": "b08", "he": "מה שלומך?", "uz": "Qalaysiz?", "ru": "Как дела?"},
+    {"id": "b09", "he": "נעים מאוד", "uz": "Tanishganimdan xursandman", "ru": "Очень приятно"},
+    {"id": "b10", "he": "אני לא מבין", "uz": "Tushunmadim", "ru": "Я не понимаю"},
+    {"id": "b11", "he": "אתה מדבר אנגלית?", "uz": "Inglizcha gapirasizmi?", "ru": "Вы говорите по-английски?"},
+    {"id": "b12", "he": "אנחנו מישראל", "uz": "Biz Isroildanmiz", "ru": "Мы из Израиля"}
+  ]},
+  {"cat": "תחבורה והכוונה", "items": [
+    {"id": "t01", "he": "איפה השירותים?", "uz": "Hojatxona qayerda?", "ru": "Где туалет?"},
+    {"id": "t02", "he": "איפה תחנת הרכבת?", "uz": "Vokzal qayerda?", "ru": "Где вокзал?"},
+    {"id": "t03", "he": "קח אותנו למלון, בבקשה", "uz": "Iltimos, bizni mehmonxonaga olib boring", "ru": "Отвезите нас в гостиницу, пожалуйста"},
+    {"id": "t04", "he": "עצור כאן, בבקשה", "uz": "Shu yerda to'xtang, iltimos", "ru": "Остановите здесь, пожалуйста"},
+    {"id": "t05", "he": "כמה עולה הנסיעה?", "uz": "Yo'l haqi qancha?", "ru": "Сколько стоит поездка?"},
+    {"id": "t06", "he": "ישר", "uz": "To'g'riga", "ru": "Прямо"},
+    {"id": "t07", "he": "ימינה", "uz": "O'ngga", "ru": "Направо"},
+    {"id": "t08", "he": "שמאלה", "uz": "Chapga", "ru": "Налево"},
+    {"id": "t09", "he": "זה רחוק?", "uz": "Uzoqmi?", "ru": "Это далеко?"}
+  ]},
+  {"cat": "קניות ושוק", "items": [
+    {"id": "s01", "he": "כמה זה עולה?", "uz": "Bu qancha turadi?", "ru": "Сколько это стоит?"},
+    {"id": "s02", "he": "יקר מדי", "uz": "Juda qimmat", "ru": "Слишком дорого"},
+    {"id": "s03", "he": "אפשר הנחה?", "uz": "Chegirma qilasizmi?", "ru": "Можно скидку?"},
+    {"id": "s04", "he": "אני אקח את זה", "uz": "Men buni olaman", "ru": "Я возьму это"},
+    {"id": "s05", "he": "אפשר לשלם בכרטיס?", "uz": "Karta bilan to'lasa bo'ladimi?", "ru": "Можно оплатить картой?"},
+    {"id": "s06", "he": "אני רק מסתכל", "uz": "Shunchaki qarayapman", "ru": "Я просто смотрю"}
+  ]},
+  {"cat": "אוכל ומסעדה", "items": [
+    {"id": "f01", "he": "תפריט, בבקשה", "uz": "Menyuni bering, iltimos", "ru": "Меню, пожалуйста"},
+    {"id": "f02", "he": "חשבון, בבקשה", "uz": "Hisobni bering, iltimos", "ru": "Счёт, пожалуйста"},
+    {"id": "f03", "he": "מים", "uz": "Suv", "ru": "Вода"},
+    {"id": "f04", "he": "תה", "uz": "Choy", "ru": "Чай"},
+    {"id": "f05", "he": "בלי חריף, בבקשה", "uz": "Achchiq bo'lmasin, iltimos", "ru": "Не острое, пожалуйста"},
+    {"id": "f06", "he": "אני לא אוכל בשר", "uz": "Men go'sht yemayman", "ru": "Я не ем мясо"},
+    {"id": "f07", "he": "טעים מאוד!", "uz": "Juda mazali!", "ru": "Очень вкусно!"}
+  ]},
+  {"cat": "מלון", "items": [
+    {"id": "h01", "he": "יש לנו הזמנה", "uz": "Bizda bron bor", "ru": "У нас есть бронь"},
+    {"id": "h02", "he": "מה הסיסמה של הוויי-פיי?", "uz": "Wi-Fi paroli qanday?", "ru": "Какой пароль от Wi-Fi?"},
+    {"id": "h03", "he": "באיזו שעה ארוחת הבוקר?", "uz": "Nonushta soat nechada?", "ru": "Во сколько завтрак?"}
+  ]},
+  {"cat": "חירום", "items": [
+    {"id": "e01", "he": "עזרה!", "uz": "Yordam bering!", "ru": "Помогите!"},
+    {"id": "e02", "he": "תזמינו רופא!", "uz": "Shifokor chaqiring!", "ru": "Вызовите врача!"},
+    {"id": "e03", "he": "תזמינו משטרה!", "uz": "Politsiyani chaqiring!", "ru": "Вызовите полицию!"},
+    {"id": "e04", "he": "איפה בית מרקחת?", "uz": "Dorixona qayerda?", "ru": "Где аптека?"},
+    {"id": "e05", "he": "הלכתי לאיבוד", "uz": "Men adashib qoldim", "ru": "Я заблудился"},
+    {"id": "e06", "he": "יש לי אלרגיה", "uz": "Menda allergiya bor", "ru": "У меня аллергия"}
+  ]}
+]
